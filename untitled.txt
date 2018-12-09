@@ -1,0 +1,21 @@
+ng new PROJET --style=scss --routing
+
+ng config schematics.@schematics/angular:component.styleext scss
+
+chat component
+auth service
+auth guard
+app routing module
+app module
+
+Créer projet Firebase :
+-----------------------
+• créer bdd firestore
+• tuto google auth
+
+Importer Firestore dans projet :
+--------------------------------
+• app module : initialize
+• auth service
+• auth guard
+
