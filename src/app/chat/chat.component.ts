@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ChatService } from '../services/chat.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  chat$: Observable<any>;
+  newMsg: string;
+
+  constructor(
+    public cs: ChatService, 
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    const chatId = this.route.snapshot.paramMap.get('id');
+    const source = this.cs.get(chatId);
+    this.chat$ = this.cs.joinUsers(source);
+  }
+
+  submit(chatId) {
+    if(!this.newMsg) {
+      return alert('you need to enter something');
+    }
+    this.cs.sendMessage(chatId, this.newMsg);
+    this.newMsg = '';
+  }
+
+  trackByCreated(i, msg) {
+    return msg.createdAt;
   }
 
 }
