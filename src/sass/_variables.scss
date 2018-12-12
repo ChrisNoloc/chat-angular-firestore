@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$font-map : (
+    title: 'Roboto',
+    content: 'Roboto'
+);
+$font-title: map-get($font-map, title);
+$font-content: map-get($font-map, content);
+
+$colors: (
+    dark: #494747,
+    dark-text: lighten(#494747, 40%),
+    dark-hover: lighten(#494747, 10%),
+    danger: #dd4b39,
+    danger-text: lighten(#dd4b39, 40%),
+    danger-hover: lighten(#dd4b39, 10%),
+    bg :#321b3b,
+    bg-text: lighten(#321b3b, 40%),
+    bg-hover: lighten(#321b3b, 10%),
+    success: #3fa14f,
+    success-text: lighten(#3fa14f, 40%),
+    success-hover: lighten(#3fa14f, 10%)
+);

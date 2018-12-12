@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "partials";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    @extend %full-size;
+
+    .content {
+        @extend %full-size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: map-get($colors, bg);
+        color: map-get($colors, bg-text);
+        font-size: 1.3em;
+        
+        app-home {
+            @extend %full-size;
+            font-family: $font-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

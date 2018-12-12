@@ -1,9 +1,67 @@
-img {
-    border-radius: 50%;
-    display: block;
-    margin: auto;
+@import '../../sass/variables';
+@import '../../sass/partials';
+
+h1 {
+  font-family : $font-title;
+  font-size: 4em;
+  margin-bottom: 1em;
+}
+
+
+.login {
+  font-family: $font-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.google-sign-in {
+  @extend %basic-button;
+  background-color: map-get($colors, danger);
+  color: map-get($colors, danger-text);
+  
+  &:hover {
+    background-color: map-get($colors, danger-hover);
   }
   
-  button {
-    margin: 10px;
+  span {
+    padding-left: 20px;
   }
+}
+
+.user {
+
+  img {
+    @extend %user-pic;
+  }
+  
+  .sign-out {
+    @extend %basic-button;
+    background-color: map-get($colors, dark);
+    color: map-get($colors, dark-text);
+  
+    &:hover {
+      background-color: map-get($colors, dark-hover);
+    }
+  }
+  
+  .add-chat {
+    @extend %basic-button;
+    background-color: map-get($colors, success);
+    color: map-get($colors, success-text);
+  
+    &:hover {
+      background-color: map-get($colors, success-hover);
+    }
+  }
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+

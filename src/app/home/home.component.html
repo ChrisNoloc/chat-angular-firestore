@@ -1,32 +1,37 @@
-<h1>Welcome to Mega Chat</h1>
 
-<div class="login">
-  <div *ngIf=" auth.user$ | async as user; else login">
-    <img [src]="user.photoURL" width="50px">
-    <p>
-      <span class="tag is-dark">{{ user.displayName }}</span>
-      <span class="tag is-light">{{ user.uid }}</span>
-    </p>
+<!-- Si l'utilisateur est connecté -->
+<div class="login" *ngIf=" auth.user$ | async as user; else login">
+  
+  <h1>Welcome, {{ user.displayName }}</h1>
+  
+  <div class="user">
+    <h2>Your profile :</h2>
+    <div class="user-info">
+      <img [src]="user.photoURL">
+      <span>{{ user.displayName }}</span>
+      <button class="sign-out" (click)="auth.signOut()">Sign Out</button>
+    </div>
+    <!-- <p class="">{{ user.uid }}</p> -->
+  </div>
 
-
-    <button class="button is-small" (click)="auth.signOut()">Sign Out</button>
-    <hr>
-
-    <button class="button is-info" (click)="cs.create()">Create New Chat</button>
-
-    <hr>
-
+  <div class="chats">
     <h3>My Chats</h3>
+    <button class="add-chat" (click)="cs.create()">Create New Chat</button>
 
     <ul>
       <li *ngFor="let chat of userChats$ | async">
-        <a [routerLink]="'chats/' + chat.id">{{ chat.id }} - {{ chat.messages.length }} Messages </a>
+        <a class="chat" [routerLink]="'chats/' + chat.id">{{ chat.id }} - {{ chat.messages.length }} Messages </a>
       </li>
     </ul>
   </div>
 
-  <ng-template #login>
-    <button class="button" (click)="auth.googleSignIn()">Login with Google</button>
-  </ng-template>
-
 </div>
+
+<!-- Si l'utilisateur n'est pas connecté  -->
+<ng-template class="login" #login>
+  <h1>You need to log in</h1>
+  <button class="google-sign-in" (click)="auth.googleSignIn()">
+    <i class="fab fa-google"></i>
+    <span>Login with Google</span>
+  </button>
+</ng-template>
